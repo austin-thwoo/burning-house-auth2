@@ -2,6 +2,7 @@ package auth.domain;
 
 
 import auth.dto.request.UserRegisterCommand;
+
 import globalCommon.domain.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
