@@ -17,7 +17,7 @@ spring:
   jpa:
 
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         show_sql: true
@@ -36,6 +36,8 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+    servlet:
+      load-on-startup: 1
 
 
 

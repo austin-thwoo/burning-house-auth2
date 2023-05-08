@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
@@ -46,7 +47,7 @@ public class TokenProvider {
 
 
     // 토큰을 만들장
-    public String createToken(String userId, List<String> roles){
+    public String createToken(String userId, Set<String> roles){
 
         // Claims 란 jwt 바디 부분
         // 바디부분에 유저에 대한 정보를 넣는다

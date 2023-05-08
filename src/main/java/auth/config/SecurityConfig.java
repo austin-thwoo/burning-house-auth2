@@ -83,15 +83,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()//이거없으면 큰일남
                 .antMatchers("/auth/**", "/resource/*").permitAll()
-                .antMatchers("/auth/**", "/board/**").hasAnyRole("USER")
+                .antMatchers("/user/**", "/board/**").hasAnyRole("USER")
                 .antMatchers("/manage/board/**", "/manage").hasRole("ADMIN")
 //                .antMatchers("/standard/**{Get}").hasRole("ADMIN")
                 .and()
-                .exceptionHandling()
-                .accessDeniedHandler(accessDeniedHandler())
-                .authenticationEntryPoint(authenticationEntryPoint())
-                .and().
-                addFilterBefore(new TokenFilter(tokenProvider), UsernamePasswordAuthenticationFilter.
+                .exceptionHandling()//예외처리를 구성한다
+                .accessDeniedHandler(accessDeniedHandler())//권한이 없는 사용자가 접근했을 때 처리할 핸들러를 등록
+                .authenticationEntryPoint(authenticationEntryPoint())// 인증되지 않은 사용자가 접근했을 때 처리할 핸들러를 등록
+                .and()
+                .addFilterBefore(new TokenFilter(tokenProvider), UsernamePasswordAuthenticationFilter.
                         class);
     }
 
@@ -120,6 +120,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         return (httpServletRequest, httpServletResponse, e) -> {
             httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
+            System.out.println("noooooooo");
             invalidTokenException(httpServletRequest, httpServletResponse);
         };
     }
@@ -143,7 +144,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private void invalidTokenException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
 
         log.info("invalidTokenException");
-
+        System.out.println("yes");
 
         PrintWriter out = httpServletResponse.getWriter();
         httpServletResponse.setContentType("application/json");

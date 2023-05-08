@@ -30,9 +30,10 @@ public class AuthApi {
     private final RegisterService registerService;
     private final LoginService loginService;
 
-    @GetMapping("/api/hello") public String hello(){
-        return "안녕하세요. 현재 서버시간은 "+new Date() +"입니다. \n";}
-
+    @GetMapping("/api/hello")
+    public String hello() {
+        return "안녕하세요. 현재 서버시간은 " + new Date() + "입니다. \n";
+    }
 
 
     @ApiOperation(value = "회원가입")
