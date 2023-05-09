@@ -7,6 +7,7 @@ package auth.api;
 import auth.application.AuthService;
 import auth.application.LoginService;
 import auth.application.RegisterService;
+import auth.domain.User;
 import auth.dto.request.LoginCommand;
 import auth.dto.request.UserRegisterCommand;
 import auth.dto.response.TokenResponse;
@@ -14,7 +15,10 @@ import globalCommon.dto.response.ApiResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Authorization;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -42,7 +46,6 @@ public class AuthApi {
         return new ApiResponse<>(registerService.register(registerCommand));
     }
 
-
     @ApiResponses(value = {
             @io.swagger.annotations.ApiResponse(code = 200, message = "로그인을 성공했습니다."),
             @io.swagger.annotations.ApiResponse(code = 404, message = "고객 아이디로 정보를 조회할 수 없습니다.\n삭제되거나 없는 고객입니다.")
@@ -51,6 +54,18 @@ public class AuthApi {
     @PostMapping("/login")
     public ApiResponse<TokenResponse> login(@RequestBody LoginCommand loginCommand) {
         return new ApiResponse<>(loginService.login(loginCommand));
+    }
+
+
+////////////////////////////////////////////////////////////////////////////////////
+    @ApiResponses(value = {
+            @io.swagger.annotations.ApiResponse(code = 200, message = "로그인을 성공했습니다."),
+            @io.swagger.annotations.ApiResponse(code = 404, message = "고객 아이디로 정보를 조회할 수 없습니다.\n삭제되거나 없는 고객입니다.")
+    })
+    @ApiOperation(value = "로그인", notes = "로그인->토큰발행")
+    @PostMapping("/check")
+    public ApiResponse<String> idCheck(@AuthenticationPrincipal User principal) {
+        return new ApiResponse<>(loginService.idCheck(principal));
     }
 
     @ApiOperation(value = "아이디 중복확인 버튼")
