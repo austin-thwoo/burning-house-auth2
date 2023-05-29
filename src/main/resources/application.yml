@@ -1,0 +1,17 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    url: jdbc:oracle:thin:@zhosck61umxnno3x_high?TNS_ADMIN=C:/Wallet_ZHOSCK61UMXNNO3X
+    username: admin
+    password: Burning1234!
+    driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      connection-timeout: 3000
+      validation-timeout: 3000
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 200000
+      max-lifetime: 240000
+      pool-name: oraPool
