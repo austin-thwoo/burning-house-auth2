@@ -1,4 +1,4 @@
-package auth.config;
+package auth.security.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;

@@ -7,7 +7,8 @@ import auth.dto.request.UserRegisterCommand;
 import auth.dto.response.TokenResponse;
 import auth.exception.UserNameDuplicatedException;
 import auth.persistance.UserJpaRepository;
-import auth.provider.TokenProvider;
+
+import auth.security.provider.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,7 +30,6 @@ public class RegisterService {
     public TokenResponse register(UserRegisterCommand registerCommand) {
         User savedUser=this.save(registerCommand);
         TokenDTO dto = new TokenDTO(getToken(savedUser), savedUser);
-
 
         return new TokenResponse(dto);
     }

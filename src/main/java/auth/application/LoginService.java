@@ -9,7 +9,7 @@ import auth.exception.DeletedUserException;
 import auth.exception.InvalidPasswordException;
 import auth.exception.UserNotFoundException;
 import auth.persistance.UserJpaRepository;
-import auth.provider.TokenProvider;
+import auth.security.provider.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
