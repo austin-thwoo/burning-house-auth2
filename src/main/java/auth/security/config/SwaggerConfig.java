@@ -1,4 +1,4 @@
-package auth.config;
+package auth.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,10 +28,9 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("PoC")
                 .version("Austin")
-                .description("PoC \n contextPath = localhost:8080/api/sims \n \n " +
+                .description("PoC \n contextPath = localhost:8070/api/burning-house-auth \n \n " +
                         "table \n \n" +
-                        "user - 회원 \n" +
-                        "board - 게시판 \n")
+                        "auth - 회원 \n")
                 .build();
     }
 
@@ -80,8 +79,8 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .apis(Predicate.not(RequestHandlerSelectors.basePackage("com.sims.soft.domain.manager")))
-                .paths(PathSelectors.ant("/api/sims/**"))
+                .apis(Predicate.not(RequestHandlerSelectors.basePackage("auth.domain.auth")))
+                .paths(PathSelectors.ant("/api/fist/**"))
                 .build();
 
 
@@ -94,12 +93,12 @@ public class SwaggerConfig {
                 .ignoredParameterTypes(AuthenticationPrincipal.class)
                 .consumes(getConsumeContentTypes())
                 .produces(getProduceContentType())
-                .groupName("Manager")
+                .groupName("auth")
                 .securityContexts(List.of(securityContext()))
                 .securitySchemes(List.of(apiKey()))
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.ant("/api/brc/manage/**"))
+                .paths(PathSelectors.ant("/api/fist/auth/**"))
                 .build();
     }
 

@@ -1,7 +1,7 @@
-package auth.filter;
+package auth.security.filter;
 
 
-import auth.provider.TokenProvider;
+import auth.security.provider.TokenProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;

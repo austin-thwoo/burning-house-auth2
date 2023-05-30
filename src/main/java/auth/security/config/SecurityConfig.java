@@ -1,8 +1,9 @@
-package auth.config;
+package auth.security.config;
 
-import auth.application.CustomUserDetailService;
-import auth.filter.TokenFilter;
-import auth.provider.TokenProvider;
+import auth.security.CustomUserDetailService;
+
+import auth.security.filter.TokenFilter;
+import auth.security.provider.TokenProvider;
 import com.google.gson.Gson;
 import globalCommon.dto.response.ErrorResponse;
 import globalCommon.error.model.ErrorCode;

@@ -1,4 +1,4 @@
-package auth.config;
+package auth.security.config;
 
 
 import lombok.extern.log4j.Log4j2;

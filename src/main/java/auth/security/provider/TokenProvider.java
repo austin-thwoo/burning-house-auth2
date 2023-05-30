@@ -1,4 +1,4 @@
-package auth.provider;
+package auth.security.provider;
 
 
 import io.jsonwebtoken.Claims;
@@ -19,7 +19,6 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Base64;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Component
@@ -41,7 +40,6 @@ public class TokenProvider {
     // secretKey를 Base64 로 인코딩한다
     @PostConstruct
     protected  void init(){
-
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
